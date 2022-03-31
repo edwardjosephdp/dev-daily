@@ -15,7 +15,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.ExperimentalPagingApi
 import com.edwardjdp.devdaily.R
-import com.edwardjdp.devdaily.ui.screens.common.AppTopBar
 import com.edwardjdp.devdaily.ui.screens.common.ErrorView
 import com.edwardjdp.devdaily.ui.screens.common.LoadingView
 import com.halilibo.richtext.markdown.Markdown
@@ -36,7 +35,10 @@ fun ArticleScreen(
 
     Scaffold(
         topBar = {
-            AppTopBar(stringResource(id = R.string.app_name))
+            ArticleTopBar(
+                title = stringResource(id = R.string.app_name),
+                onBack = navController::popBackStack
+            )
         },
         content = {
             DetailsContent(
@@ -85,7 +87,7 @@ fun DetailsContent(
                     )
                 }
 
-                RichText(modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)) {
+                RichText(modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 32.dp)) {
                     Markdown(content = """${details.data.body.orEmpty()}""".trimIndent())
                 }
             }

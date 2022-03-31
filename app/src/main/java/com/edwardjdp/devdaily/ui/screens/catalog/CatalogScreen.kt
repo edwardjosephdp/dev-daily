@@ -13,7 +13,6 @@ import com.edwardjdp.devdaily.ui.screens.common.ListContent
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import com.edwardjdp.devdaily.R
-import com.edwardjdp.devdaily.ui.screens.common.AppTopBar
 
 @ExperimentalPagingApi
 @Composable
@@ -34,7 +33,7 @@ fun CatalogScreen(
 
     Scaffold(
         topBar = {
-            AppTopBar(stringResource(id = R.string.app_name))
+            CatalogTopBar(stringResource(id = R.string.app_name))
         },
         content = {
             ListContent(state.value.data.collectAsLazyPagingItems(), viewModel)
