@@ -1,17 +1,19 @@
-package com.edwardjdp.devdaily.ui.screens.catalog
+package com.edwardjdp.devdaily.ui.screens.common
 
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.edwardjdp.devdaily.R
 
 @Composable
-fun CatalogTopBar() {
+fun AppTopBar(title: String) {
     TopAppBar(
         title = {
             Text(
-                text = "Dev Daily",
+                text = title,
                 color = Color.Blue
             )
         },
@@ -22,5 +24,5 @@ fun CatalogTopBar() {
 @Preview
 @Composable
 fun CatalogAppBarPreview() {
- CatalogTopBar()
+ AppTopBar(stringResource(id = R.string.app_name))
 }

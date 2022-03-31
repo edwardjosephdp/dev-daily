@@ -2,8 +2,9 @@ package com.edwardjdp.devdaily.ui.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import com.edwardjdp.devdaily.domain.model.ArticleUI
+import com.edwardjdp.common.UiEffect
+import com.edwardjdp.common.UiEvent
+import com.edwardjdp.common.UiState
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -19,9 +20,6 @@ abstract class BaseViewModel<EV : UiEvent, ST : UiState, EF : UiEffect> : ViewMo
     private val _uiState: MutableStateFlow<ST> = MutableStateFlow(initialState)
     val uiState = _uiState.asStateFlow()
 
-    private var _pagingData: Flow<PagingData<ArticleUI>> = emptyFlow()
-    val pagingData by lazy { _pagingData }
-
     private val _event: MutableSharedFlow<EV> = MutableSharedFlow()
     val event = _event.asSharedFlow()
 
@@ -35,12 +33,12 @@ abstract class BaseViewModel<EV : UiEvent, ST : UiState, EF : UiEffect> : ViewMo
     private fun subscribeEvents() {
         viewModelScope.launch {
             event.collect {
-                handleEvent(it)
+                processEvent(it)
             }
         }
     }
 
-    abstract fun handleEvent(event: EV)
+    abstract suspend fun processEvent(event: EV)
 
     fun setEvent(event: EV) {
         val newEvent = event
@@ -50,12 +48,6 @@ abstract class BaseViewModel<EV : UiEvent, ST : UiState, EF : UiEffect> : ViewMo
     protected fun setState(reduce: ST.() -> ST) {
         val newState = currentState.reduce()
         _uiState.value = newState
-    }
-
-    protected fun setPagingData(useCase: suspend () -> Flow<PagingData<ArticleUI>>) {
-        viewModelScope.launch {
-            _pagingData = useCase.invoke()
-        }
     }
 
     protected fun setEffect(builder: () -> EF) {

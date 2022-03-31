@@ -13,6 +13,7 @@ data class ArticleUI(
     val positiveReactionsCount: Int,
     val publicReactionsCount: Int,
     val readingTimeMinutes: Int,
+    val body: String?,
     val readablePublishDate: String?,
     val publishedTimestamp: String?
 )

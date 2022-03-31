@@ -6,7 +6,7 @@ import com.edwardjdp.devdaily.domain.model.ArticleUI
 import com.edwardjdp.devdaily.domain.model.User
 import javax.inject.Inject
 
-class ApiToDomainArticleMapper @Inject constructor() : Mapper<Article, ArticleUI> {
+class ApiToDomainArticlesMapper @Inject constructor() : Mapper<Article, ArticleUI> {
 
     override fun from(i: Article): ArticleUI {
        return with(i) {
@@ -29,6 +29,7 @@ class ApiToDomainArticleMapper @Inject constructor() : Mapper<Article, ArticleUI
                 positiveReactionsCount = positiveReactionsCount,
                 publicReactionsCount = publicReactionsCount,
                 readingTimeMinutes = readingTimeMinutes,
+                body = null,
                 readablePublishDate = readablePublishDate,
                 publishedTimestamp = publishedTimestamp
             )

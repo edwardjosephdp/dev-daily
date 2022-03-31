@@ -9,5 +9,5 @@ interface ArticlesRepository {
 
     fun getLatestArticles() : Flow<PagingData<ArticleUI>>
 
-    suspend fun getArticleById() : ArticleUI
+    suspend fun getArticleById(id: Int) : Flow<Resource<ArticleUI>>
 }

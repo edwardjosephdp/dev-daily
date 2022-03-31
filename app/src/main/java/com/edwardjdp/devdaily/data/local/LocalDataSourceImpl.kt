@@ -2,10 +2,8 @@ package com.edwardjdp.devdaily.data.local
 
 import androidx.paging.PagingSource
 import androidx.room.withTransaction
-import com.edwardjdp.common.Mapper
 import com.edwardjdp.devdaily.data.model.Article
 import com.edwardjdp.devdaily.data.model.ArticleRemoteKeys
-import com.edwardjdp.devdaily.domain.model.ArticleUI
 import javax.inject.Inject
 
 class LocalDataSourceImpl @Inject constructor(

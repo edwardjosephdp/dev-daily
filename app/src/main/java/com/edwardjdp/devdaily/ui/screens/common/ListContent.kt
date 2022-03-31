@@ -1,6 +1,6 @@
 package com.edwardjdp.devdaily.ui.screens.common
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -8,23 +8,29 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
-import com.edwardjdp.devdaily.data.model.Article
 import com.edwardjdp.devdaily.domain.model.ArticleUI
 import com.edwardjdp.devdaily.domain.model.User
+import com.edwardjdp.devdaily.ui.screens.catalog.CatalogViewModel
 
+@ExperimentalPagingApi
 @Composable
-fun ListContent(list: LazyPagingItems<ArticleUI>) {
+fun ListContent(
+    list: LazyPagingItems<ArticleUI>,
+    viewModel: CatalogViewModel
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(all = 4.dp),
@@ -37,7 +43,10 @@ fun ListContent(list: LazyPagingItems<ArticleUI>) {
             }
         ) { article ->
             article?.let {
-                ArticleItem(model = it)
+                ArticleItem(
+                    model = it,
+                    onSelectArticle = viewModel::viewArticle
+                )
             }
         }
 
@@ -73,10 +82,17 @@ fun ListContent(list: LazyPagingItems<ArticleUI>) {
     }
 }
 
+@ExperimentalPagingApi
 @Composable
-fun ArticleItem(model: ArticleUI) {
+fun ArticleItem(
+    model: ArticleUI,
+    onSelectArticle: (Int) -> Unit
+) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth()
+            .clickable {
+                onSelectArticle(model.id)
+            },
         shape = RoundedCornerShape(10.dp),
         elevation = 4.dp
     ) {
@@ -103,7 +119,7 @@ fun ArticleItem(model: ArticleUI) {
                 modifier = Modifier
                     .constrainAs(author) {
                         top.linkTo(anchor = title.bottom, margin = 12.dp)
-                        start.linkTo(anchor = parent.start, margin = 8.dp)
+                        start.linkTo(anchor = parent.start)
                     }
                     .wrapContentSize()
                     .padding(4.dp),
@@ -114,7 +130,7 @@ fun ArticleItem(model: ArticleUI) {
                 modifier = Modifier
                     .constrainAs(publishedDate) {
                         top.linkTo(anchor = title.bottom, margin = 12.dp)
-                        end.linkTo(anchor = parent.end, margin = 8.dp)
+                        end.linkTo(anchor = parent.end)
                     }
                     .wrapContentSize()
                     .padding(4.dp),
@@ -123,6 +139,7 @@ fun ArticleItem(model: ArticleUI) {
     }
 }
 
+@ExperimentalPagingApi
 @Preview
 @Composable
 fun ArticleItemPreview() {
@@ -145,22 +162,12 @@ fun ArticleItemPreview() {
         positiveReactionsCount = 1,
         publicReactionsCount = 1,
         readingTimeMinutes = 15,
+        body = null,
         readablePublishDate = "Mar 12, 2022",
         publishedTimestamp = ""
-    ))
-}
-
-@Composable
-fun LoadingView(
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        CircularProgressIndicator()
-    }
+    ),
+        onSelectArticle = {}
+    )
 }
 
 @Composable
@@ -168,31 +175,7 @@ fun LoadingItem() {
     CircularProgressIndicator(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(12.dp)
             .wrapContentWidth(Alignment.CenterHorizontally)
     )
-}
-
-@Composable
-fun ErrorView(
-    message: String,
-    modifier: Modifier = Modifier,
-    onClickRetry: () -> Unit
-) {
-    Row(
-        modifier = modifier.padding(16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = message,
-            maxLines = 1,
-            modifier = Modifier.weight(1f),
-            style = MaterialTheme.typography.h6,
-            color = Color.Red
-        )
-        OutlinedButton(onClick = onClickRetry) {
-            Text(text = "Retry loading...")
-        }
-    }
 }

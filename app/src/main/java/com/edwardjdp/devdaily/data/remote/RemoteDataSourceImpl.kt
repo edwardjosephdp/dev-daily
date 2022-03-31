@@ -1,6 +1,7 @@
 package com.edwardjdp.devdaily.data.remote
 
 import com.edwardjdp.devdaily.data.model.Article
+import com.edwardjdp.devdaily.data.model.ArticleDetails
 import javax.inject.Inject
 
 class RemoteDataSourceImpl @Inject constructor(
@@ -11,7 +12,7 @@ class RemoteDataSourceImpl @Inject constructor(
         return service.getLatestArticles(page, perPage)
     }
 
-    override suspend fun fetchArticleById(id: Int): Article {
-        TODO("Not yet implemented")
+    override suspend fun fetchArticleById(id: Int): ArticleDetails {
+        return service.fetchArticleById(id)
     }
 }

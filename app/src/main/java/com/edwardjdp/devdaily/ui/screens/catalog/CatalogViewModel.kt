@@ -1,46 +1,53 @@
 package com.edwardjdp.devdaily.ui.screens.catalog
 
-import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
-import androidx.paging.PagingData
-import com.edwardjdp.devdaily.domain.model.ArticleUI
-import com.edwardjdp.devdaily.domain.repository.ArticlesRepository
-import com.edwardjdp.devdaily.domain.usecase.GetLatestArticles
+import com.edwardjdp.devdaily.domain.usecase.GetLatestArticlesUseCase
 import com.edwardjdp.devdaily.ui.base.BaseViewModel
+import com.edwardjdp.devdaily.ui.screens.catalog.CatalogContract.CatalogEvent
+import com.edwardjdp.devdaily.ui.screens.catalog.CatalogContract.CatalogState
+import com.edwardjdp.devdaily.ui.screens.catalog.CatalogContract.CatalogEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @ExperimentalPagingApi
 @HiltViewModel
 class CatalogViewModel @Inject constructor(
-    private val getLatestArticles: GetLatestArticles
-) : BaseViewModel<CatalogContract.CatalogEvent, CatalogContract.CatalogState, CatalogContract.CatalogEffect>() {
+    private val getLatestArticlesUseCase: GetLatestArticlesUseCase
+) : BaseViewModel<CatalogEvent, CatalogState, CatalogEffect>() {
 
     init {
-        loadInitialContent()
+        loadArticles()
     }
 
-    override fun createInitialState(): CatalogContract.CatalogState {
-        return CatalogContract.CatalogState.Idle
-    }
+    override fun createInitialState(): CatalogState = CatalogState.initial()
 
-    override fun handleEvent(event: CatalogContract.CatalogEvent) {
+    override suspend fun processEvent(event: CatalogEvent) {
         when (event) {
-            CatalogContract.CatalogEvent.LoadInitialArticles -> getAllLatestArticles()
-            CatalogContract.CatalogEvent.RetryLoading -> TODO()
-            is CatalogContract.CatalogEvent.SelectArticle -> TODO()
+            CatalogEvent.LoadLatestArticles -> getAllLatestArticles()
+            CatalogEvent.RetryLoading -> TODO()
+            is CatalogEvent.SelectArticle -> selectArticle(event.id)
         }
     }
 
-    fun loadInitialContent() {
-        setEvent(CatalogContract.CatalogEvent.LoadInitialArticles)
+    fun loadArticles() {
+        setEvent(CatalogEvent.LoadLatestArticles)
     }
 
-    private fun getAllLatestArticles() {
-        setPagingData {
-            getLatestArticles()
+    fun viewArticle(id: Int) {
+        setEvent(CatalogEvent.SelectArticle(id))
+    }
+
+    private suspend fun getAllLatestArticles() {
+        val latestArticles = getLatestArticlesUseCase()
+        setState {
+            copy(data = latestArticles)
+        }
+    }
+
+    private fun selectArticle(id: Int) {
+        setEffect {
+            CatalogEffect.OnArticleSelected(id)
         }
     }
 }
