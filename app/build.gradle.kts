@@ -113,6 +113,10 @@ dependencies {
     // Paging 3
     implementation(Dependency.AndroidX.Paging3.compose)
 
+    // RichText
+    implementation(Dependency.RichText.common)
+    implementation(Dependency.RichText.ui)
+
     testImplementation(Dependency.JUnit.jUnit)
     androidTestImplementation(Dependency.AndroidX.Test.extJUnit)
     androidTestImplementation(Dependency.AndroidX.Test.Espresso.core)

@@ -24,6 +24,8 @@ object Version {
 
     const val navigation = "2.4.1"
 
+    const val richText = "0.11.0"
+
     const val extJUnit = "1.1.3"
     const val espresso = "3.4.0"
     const val jUnit = "4.13.2"

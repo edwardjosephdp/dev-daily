@@ -20,7 +20,7 @@ object RemoteModule {
     @Provides
     @Singleton
     fun provideHttpLogging(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
+        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
     @Provides
     @Singleton

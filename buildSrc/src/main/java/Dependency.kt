@@ -1,25 +1,30 @@
 object Dependency {
 
-    const val serializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Version.serializationConverter}"
-    const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Version.serialization}"
+    const val serializationConverter =
+        "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Version.serializationConverter}"
+    const val serialization =
+        "org.jetbrains.kotlinx:kotlinx-serialization-json:${Version.serialization}"
 
     object Material {
         const val material = "com.google.android.material:material:${Version.material}"
-        const val composeAdapter = "com.google.android.material:compose-theme-adapter:${Version.compose}"
+        const val composeAdapter =
+            "com.google.android.material:compose-theme-adapter:${Version.compose}"
     }
 
     object AndroidX {
         const val core = "androidx.core:core-ktx:${Version.coreKtx}"
         const val appCompat = "androidx.appcompat:appcompat:${Version.appCompat}"
-        const val constraintCompose = "androidx.constraintlayout:constraintlayout-compose:${Version.composeIntgr}"
+        const val constraintCompose =
+            "androidx.constraintlayout:constraintlayout-compose:${Version.composeIntgr}"
 
         object Activity {
             const val compose = "androidx.activity:activity-compose:${Version.activityCompose}"
         }
 
-        object LifeCycle  {
+        object LifeCycle {
             const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifeCycle}"
-            const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:${Version.lifeCycle}"
+            const val viewModelCompose =
+                "androidx.lifecycle:lifecycle-viewmodel-compose:${Version.lifeCycle}"
         }
 
         object Compose {
@@ -84,6 +89,13 @@ object Dependency {
         const val dash = "com.google.android.exoplayer:exoplayer-dash:${Version.exoplayer}"
         const val ui = "com.google.android.exoplayer:exoplayer-ui:${Version.exoplayer}"
         const val hsl = "com.google.android.exoplayer:exoplayer-hls:${Version.exoplayer}"
+    }
+
+    object RichText {
+        const val common = "com.halilibo.compose-richtext:richtext-commonmark:${Version.richText}"
+        const val ui = "com.halilibo.compose-richtext:richtext-ui:${Version.richText}"
+        const val material =
+            "com.halilibo.compose-richtext:richtext-material-ui:${Version.richText}"
     }
 
     object JUnit {

@@ -1,8 +1,6 @@
 package com.edwardjdp.devdaily.ui.screens.article
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
@@ -10,7 +8,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.ExperimentalPagingApi
@@ -18,6 +18,8 @@ import com.edwardjdp.devdaily.R
 import com.edwardjdp.devdaily.ui.screens.common.AppTopBar
 import com.edwardjdp.devdaily.ui.screens.common.ErrorView
 import com.edwardjdp.devdaily.ui.screens.common.LoadingView
+import com.halilibo.richtext.markdown.Markdown
+import com.halilibo.richtext.ui.RichText
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -62,7 +64,6 @@ fun DetailsContent(
 
     Column(
         modifier = Modifier
-            .padding(16.dp)
             .verticalScroll(rememberScrollState())
             .fillMaxSize()
     ) {
@@ -73,7 +74,20 @@ fun DetailsContent(
             }
 
             details.data != null -> {
-                Text(text = details.data.body ?: "")
+                Box(modifier = Modifier
+                    .padding(start = 16.dp, top = 24.dp, end = 16.dp, bottom = 8.dp)
+                    .fillMaxWidth()
+                ) {
+                    Text(
+                        text = details.data.title ?: "",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                RichText(modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)) {
+                    Markdown(content = """${details.data.body.orEmpty()}""".trimIndent())
+                }
             }
 
             details.errorMessage != null -> {
