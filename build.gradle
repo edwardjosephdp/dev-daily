@@ -16,6 +16,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.jlleitschuh.gradle.ktlint" version "10.1.0" apply false
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
