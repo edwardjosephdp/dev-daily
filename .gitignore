@@ -72,6 +72,6 @@ lint/tmp/
 # App Specific cases 
 app/release/output.json
 .idea/codeStyles/
-# Include buildSrc
-/build
-buildSrc.i*
+## Include buildSrc
+#/build
+#buildSrc.i*
