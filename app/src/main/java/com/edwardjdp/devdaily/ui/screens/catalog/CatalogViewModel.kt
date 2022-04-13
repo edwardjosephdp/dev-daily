@@ -3,12 +3,11 @@ package com.edwardjdp.devdaily.ui.screens.catalog
 import androidx.paging.ExperimentalPagingApi
 import com.edwardjdp.devdaily.domain.usecase.GetLatestArticlesUseCase
 import com.edwardjdp.devdaily.ui.base.BaseViewModel
+import com.edwardjdp.devdaily.ui.screens.catalog.CatalogContract.CatalogEffect
 import com.edwardjdp.devdaily.ui.screens.catalog.CatalogContract.CatalogEvent
 import com.edwardjdp.devdaily.ui.screens.catalog.CatalogContract.CatalogState
-import com.edwardjdp.devdaily.ui.screens.catalog.CatalogContract.CatalogEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-
 
 @ExperimentalPagingApi
 @HiltViewModel

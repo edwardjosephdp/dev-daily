@@ -16,8 +16,8 @@ import dagger.hilt.components.SingletonComponent
 abstract class MapperUseCase {
 
     @Binds
-    abstract fun bindsArticlesMapper(mapper : ApiToDomainArticlesMapper) : Mapper<Article, ArticleUI>
+    abstract fun bindsArticlesMapper(mapper: ApiToDomainArticlesMapper): Mapper<Article, ArticleUI>
 
     @Binds
-    abstract fun bindsArticleDetailsMapper(mapper : ApiToDomainArticleDetailsMapper) : Mapper<ArticleDetails, ArticleUI>
+    abstract fun bindsArticleDetailsMapper(mapper: ApiToDomainArticleDetailsMapper): Mapper<ArticleDetails, ArticleUI>
 }

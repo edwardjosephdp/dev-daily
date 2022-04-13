@@ -4,10 +4,10 @@ import androidx.lifecycle.SavedStateHandle
 import com.edwardjdp.common.Resource
 import com.edwardjdp.devdaily.domain.usecase.GetArticleByIdUseCase
 import com.edwardjdp.devdaily.ui.base.BaseViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.edwardjdp.devdaily.ui.screens.article.ArticleContract.ArticleEffect
 import com.edwardjdp.devdaily.ui.screens.article.ArticleContract.ArticleEvent
 import com.edwardjdp.devdaily.ui.screens.article.ArticleContract.ArticleState
-import com.edwardjdp.devdaily.ui.screens.article.ArticleContract.ArticleEffect
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
@@ -70,6 +70,5 @@ class ArticleViewModel @Inject constructor(
                     }
                 }
             }
-
     }
 }

@@ -76,9 +76,10 @@ fun DetailsContent(
             }
 
             details.data != null -> {
-                Box(modifier = Modifier
-                    .padding(start = 16.dp, top = 24.dp, end = 16.dp, bottom = 8.dp)
-                    .fillMaxWidth()
+                Box(
+                    modifier = Modifier
+                        .padding(start = 16.dp, top = 24.dp, end = 16.dp, bottom = 8.dp)
+                        .fillMaxWidth()
                 ) {
                     Text(
                         text = details.data.title ?: "",

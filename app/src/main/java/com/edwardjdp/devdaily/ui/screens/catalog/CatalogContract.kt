@@ -1,13 +1,12 @@
 package com.edwardjdp.devdaily.ui.screens.catalog
 
 import androidx.paging.PagingData
-import com.edwardjdp.devdaily.domain.model.ArticleUI
 import com.edwardjdp.common.UiEffect
 import com.edwardjdp.common.UiEvent
 import com.edwardjdp.common.UiState
+import com.edwardjdp.devdaily.domain.model.ArticleUI
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
-
 
 object CatalogContract {
 

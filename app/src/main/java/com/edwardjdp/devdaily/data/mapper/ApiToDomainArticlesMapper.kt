@@ -9,7 +9,7 @@ import javax.inject.Inject
 class ApiToDomainArticlesMapper @Inject constructor() : Mapper<Article, ArticleUI> {
 
     override fun from(i: Article): ArticleUI {
-       return with(i) {
+        return with(i) {
             ArticleUI(
                 id = id,
                 type = typeOf,

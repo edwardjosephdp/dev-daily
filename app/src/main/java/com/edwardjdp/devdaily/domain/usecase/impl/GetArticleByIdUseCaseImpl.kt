@@ -13,7 +13,7 @@ import javax.inject.Inject
 class GetArticleByIdUseCaseImpl @Inject constructor(
     private val repository: ArticlesRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
-): GetArticleByIdUseCase {
+) : GetArticleByIdUseCase {
 
     override suspend fun invoke(id: Int): Flow<Resource<ArticleUI>> {
         return repository.getArticleById(id).flowOn(dispatcher)

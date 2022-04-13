@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.edwardjdp.devdaily.data.model.Article
-import com.edwardjdp.devdaily.domain.model.ArticleUI
 
 @Dao
 interface ArticleDao {

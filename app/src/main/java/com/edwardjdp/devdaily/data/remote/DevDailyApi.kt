@@ -1,9 +1,9 @@
 package com.edwardjdp.devdaily.data.remote
 
-import com.edwardjdp.devdaily.utils.AppConstants.ARTICLES_ENDPOINT
-import com.edwardjdp.devdaily.utils.AppConstants.ARTICLE_BY_ID_ENDPOINT
 import com.edwardjdp.devdaily.data.model.Article
 import com.edwardjdp.devdaily.data.model.ArticleDetails
+import com.edwardjdp.devdaily.utils.AppConstants.ARTICLES_ENDPOINT
+import com.edwardjdp.devdaily.utils.AppConstants.ARTICLE_BY_ID_ENDPOINT
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -20,5 +20,4 @@ interface DevDailyApi {
     suspend fun fetchArticleById(
         @Path("id") id: Int
     ): ArticleDetails
-
 }

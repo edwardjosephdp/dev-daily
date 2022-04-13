@@ -10,5 +10,4 @@ abstract class DevDailyDb : RoomDatabase() {
 
     abstract fun articleDao(): ArticleDao
     abstract fun articleRemoteKeysDao(): ArticleRemoteKeysDao
-
 }
