@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Run Ktlint
-          command: ./gradlew ktlint
+          command: ./gradlew ktlintCheck
       - run:
           name: Assemble release build
           command: |
