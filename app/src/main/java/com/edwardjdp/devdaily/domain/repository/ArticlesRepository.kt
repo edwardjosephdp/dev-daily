@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ArticlesRepository {
 
-    fun getLatestArticles() : Flow<PagingData<ArticleUI>>
+    fun getLatestArticles(): Flow<PagingData<ArticleUI>>
 
-    suspend fun getArticleById(id: Int) : Flow<Resource<ArticleUI>>
+    suspend fun getArticleById(id: Int): Flow<Resource<ArticleUI>>
 }

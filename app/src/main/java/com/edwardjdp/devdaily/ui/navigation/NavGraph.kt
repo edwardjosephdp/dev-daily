@@ -35,6 +35,4 @@ fun SetupNavHost(navController: NavHostController) {
     }
 }
 
-object NavKeys {
-
-}
+object NavKeys

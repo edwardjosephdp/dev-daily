@@ -1,0 +1,22 @@
+version: 2.1
+orbs:
+  android: circleci/android@1.0.3
+
+jobs:
+  check-lint-and-build:
+    executor:
+      name: android/android-machine
+    steps:
+      - checkout
+      - run:
+          name: Run Ktlint
+          command: ./gradlew ktlintCheck
+      - run:
+          name: Assemble release build
+          command: |
+            ./gradlew assembleRelease
+
+workflows:
+  lint-and-build:
+    jobs:
+      - check-lint-and-build

@@ -1,12 +1,11 @@
 package com.edwardjdp.devdaily.data.model
 
-
-import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.edwardjdp.devdaily.utils.AppConstants.ARTICLES_TABLE
+import com.google.gson.annotations.SerializedName
 
 @Keep
 @Entity(tableName = ARTICLES_TABLE)

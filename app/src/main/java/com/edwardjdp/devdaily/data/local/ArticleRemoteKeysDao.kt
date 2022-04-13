@@ -17,5 +17,4 @@ interface ArticleRemoteKeysDao {
 
     @Query("DELETE FROM articles_remote_keys_table")
     suspend fun deleteAllRemoteKeys()
-
 }

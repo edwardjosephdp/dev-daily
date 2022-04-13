@@ -8,15 +8,12 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
@@ -96,9 +93,10 @@ fun ArticleItem(
         shape = RoundedCornerShape(10.dp),
         elevation = 4.dp
     ) {
-        ConstraintLayout(modifier = Modifier
-            .fillMaxWidth()
-            .padding(all = 8.dp)
+        ConstraintLayout(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(all = 8.dp)
         ) {
             val (title, author, publishedDate) = createRefs()
             Text(
@@ -143,29 +141,30 @@ fun ArticleItem(
 @Preview
 @Composable
 fun ArticleItemPreview() {
-    ArticleItem(model = ArticleUI(
-        id = 11230,
-        type = "article",
-        title = "Long titleeee",
-        description = "description",
-        coverImage = "cover",
-        path = "/path",
-        headerImageUrl = "",
-        tags = listOf(),
-        user = User(
-            name = "john doe",
-            githubUserName = "jdoeee",
-            userName = "jdoe11230",
-            image90Url = "",
-            image640Url = ""
+    ArticleItem(
+        model = ArticleUI(
+            id = 11230,
+            type = "article",
+            title = "Long titleeee",
+            description = "description",
+            coverImage = "cover",
+            path = "/path",
+            headerImageUrl = "",
+            tags = listOf(),
+            user = User(
+                name = "john doe",
+                githubUserName = "jdoeee",
+                userName = "jdoe11230",
+                image90Url = "",
+                image640Url = ""
+            ),
+            positiveReactionsCount = 1,
+            publicReactionsCount = 1,
+            readingTimeMinutes = 15,
+            body = null,
+            readablePublishDate = "Mar 12, 2022",
+            publishedTimestamp = ""
         ),
-        positiveReactionsCount = 1,
-        publicReactionsCount = 1,
-        readingTimeMinutes = 15,
-        body = null,
-        readablePublishDate = "Mar 12, 2022",
-        publishedTimestamp = ""
-    ),
         onSelectArticle = {}
     )
 }

@@ -44,5 +44,4 @@ object RemoteModule {
     @Singleton
     fun provideDevDailyApi(retrofit: Retrofit): DevDailyApi =
         retrofit.create(DevDailyApi::class.java)
-
 }
